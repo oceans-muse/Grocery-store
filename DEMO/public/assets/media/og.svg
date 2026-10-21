@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="space" cx="0" cy="0" r="1" gradientTransform="translate(600 210) rotate(90) scale(720 880)">
+      <stop stop-color="#15224c"/><stop offset=".48" stop-color="#070912"/><stop offset="1" stop-color="#030408"/>
+    </radialGradient>
+    <radialGradient id="aurora" cx="0" cy="0" r="1" gradientTransform="translate(310 250) rotate(36) scale(500 420)">
+      <stop stop-color="#4a7dff" stop-opacity=".48"/><stop offset="1" stop-color="#4a7dff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="aurora2" cx="0" cy="0" r="1" gradientTransform="translate(930 430) rotate(-130) scale(460 360)">
+      <stop stop-color="#c46bff" stop-opacity=".34"/><stop offset="1" stop-color="#c46bff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="star" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ffffff"/><stop offset=".45" stop-color="#b9d6ff"/><stop offset="1" stop-color="#d7b8ff"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#8fbaff" stop-opacity=".9"/><stop offset="1" stop-color="#d6b7ff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="30"/></filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#space)"/>
+  <rect width="1200" height="630" fill="url(#aurora)"/>
+  <rect width="1200" height="630" fill="url(#aurora2)"/>
+  <g opacity=".26" stroke="#fff" stroke-width="1">
+    <path d="M80 0v630M240 0v630M400 0v630M560 0v630M720 0v630M880 0v630M1040 0v630M1200 0v630" opacity=".16"/>
+    <path d="M0 120h1200M0 280h1200M0 440h1200M0 600h1200" opacity=".16"/>
+  </g>
+  <circle cx="900" cy="300" r="188" fill="none" stroke="#9fc4ff" stroke-opacity=".18"/>
+  <ellipse cx="900" cy="300" rx="282" ry="110" fill="none" stroke="#b6a4ff" stroke-opacity=".22" transform="rotate(-18 900 300)"/>
+  <circle cx="900" cy="300" r="104" fill="#0a0e1e"/>
+  <circle cx="900" cy="300" r="104" fill="url(#star)" opacity=".13"/>
+  <circle cx="900" cy="300" r="104" fill="none" stroke="#fff" stroke-opacity=".24"/>
+  <path d="M900 214 914 286 986 300 914 314 900 386 886 314 814 300 886 286Z" fill="url(#star)" filter="url(#blur)" opacity=".55"/>
+  <path d="M900 214 914 286 986 300 914 314 900 386 886 314 814 300 886 286Z" fill="url(#star)"/>
+  <circle cx="1086" cy="180" r="5" fill="#fff"/>
+  <circle cx="1140" cy="430" r="3" fill="#cfe4ff"/>
+  <circle cx="764" cy="492" r="2.5" fill="#fff" opacity=".8"/>
+  <text x="88" y="190" fill="#ffffff" fill-opacity=".56" font-family="SFMono-Regular, Menlo, monospace" font-size="16" letter-spacing="8">ORBITAL ATELIER / SHANGHAI</text>
+  <text x="84" y="320" fill="#ffffff" font-family="SF Pro Display, PingFang SC, sans-serif" font-size="92" font-weight="600" letter-spacing="-5">oceans-muse</text>
+  <text x="88" y="380" fill="#ffffff" fill-opacity=".72" font-family="PingFang SC, sans-serif" font-size="26" letter-spacing="2">把复杂的系统，设计成透明的直觉。</text>
+  <rect x="88" y="430" width="360" height="1" fill="url(#line)"/>
+  <text x="88" y="478" fill="#ffffff" fill-opacity=".42" font-family="SFMono-Regular, Menlo, monospace" font-size="14" letter-spacing="4">ROCKET DESIGN · INTERFACE · FIELD NOTES</text>
+  <rect x="88" y="526" width="104" height="34" rx="17" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".18"/>
+  <circle cx="108" cy="543" r="3.5" fill="#a8f0c6"/>
+  <text x="120" y="547" fill="#ffffff" fill-opacity=".8" font-family="SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2">ONLINE</text>
+</svg>

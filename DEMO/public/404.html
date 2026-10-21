@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050508">
+  <title>信号丢失 · oceans-muse</title>
+  <script src="/assets/js/theme.js?v=20261032"></script>
+  <link rel="stylesheet" href="/assets/css/base.css?v=20261032">
+  <style>
+    .lost { min-height: 100svh; display: grid; place-items: center; padding: 32px; position: relative; }
+    .lost__card { max-width: 520px; padding: 44px; border-radius: var(--r-xl); text-align: center; }
+    .lost__code { font: 500 10px var(--font-mono); letter-spacing: .3em; color: var(--ink-4); }
+    .lost h1 { margin-top: 18px; font-family: var(--font-display); font-size: clamp(38px, 7vw, 64px); line-height: .95; letter-spacing: -.05em; font-weight: 620; }
+    .lost p { margin-top: 16px; color: var(--ink-3); font-size: 14px; line-height: 1.8; }
+    .lost__actions { display: flex; justify-content: center; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+    .lost__orb { width: 72px; height: 72px; margin: 0 auto 24px; border-radius: 50%; border: 1px dashed var(--line-strong); position: relative; animation: slow-spin 16s linear infinite; }
+    .lost__orb::after { content: ""; position: absolute; inset: 22px; border-radius: 50%; background: radial-gradient(circle, var(--blue), transparent 70%); filter: blur(1px); }
+    @keyframes slow-spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__blob ambient__blob--a"></div>
+    <div class="ambient__blob ambient__blob--b"></div>
+    <div class="ambient__grid"></div>
+  </div>
+  <main class="lost">
+    <div class="lost__card glass">
+      <span class="lost__orb" aria-hidden="true"></span>
+      <p class="lost__code">404 / SIGNAL LOST</p>
+      <h1>这条轨道<br>不存在。</h1>
+      <p>你访问的页面可能已经被移动、回收，或者从未被发射。回到主站，继续查看最新的飞行日志。</p>
+      <div class="lost__actions">
+        <a class="btn btn--primary" href="/">返回首页</a>
+        <a class="btn" href="/#journal">浏览手记</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

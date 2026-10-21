@@ -1,0 +1,21 @@
+# runtime
+node_modules/
+.env
+
+# data (keep the folder, ignore the database)
+data/*.db
+data/*.db-*
+data/*.sqlite
+data/*.sqlite-*
+
+# local / OS
+.DS_Store
+Thumbs.db
+*.log
+
+# sandbox diagnostics & local browser profiles
+.acl-repair/
+.browser-*/
+
+# local QA captures
+qa/*.png

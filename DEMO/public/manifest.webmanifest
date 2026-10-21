@@ -1,0 +1,14 @@
+{
+  "name": "oceans-muse · 飞行日志",
+  "short_name": "oceans-muse",
+  "description": "火箭设计师的个人手记：结构、推进、飞控，以及那些让复杂变简单的设计判断。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050508",
+  "theme_color": "#050508",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "/assets/media/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/assets/media/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

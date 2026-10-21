@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#050508">
+  <meta name="description" content="oceans-muse · 火箭设计师的个人手记：结构、推进、飞控，以及那些让复杂变简单的设计判断。">
+  <meta name="author" content="oceans-muse">
+  <meta property="og:title" content="oceans-muse · 把复杂，设计成直觉">
+  <meta property="og:description" content="火箭设计师的个人手记：结构、推进、飞控，以及那些让复杂变简单的设计判断。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/media/og.svg">
+  <title>oceans-muse · 把复杂，设计成直觉</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/media/favicon.svg">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <script src="/assets/js/theme.js?v=20261032"></script>
+  <link rel="stylesheet" href="/assets/css/base.css?v=20261032">
+  <link rel="stylesheet" href="/assets/css/home.css?v=20261032">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__blob ambient__blob--a"></div>
+    <div class="ambient__blob ambient__blob--b"></div>
+    <div class="ambient__blob ambient__blob--c"></div>
+    <div class="ambient__grid"></div>
+    <div class="ambient__noise"></div>
+  </div>
+
+  <!-- Opening lens. Skippable, session-aware, reduced-motion aware. -->
+  <div class="liquid-boot" id="liquidBoot" aria-hidden="true">
+    <div class="liquid-boot__stage">
+      <div class="liquid-boot__lens">
+        <span class="liquid-boot__ring"></span>
+        <span class="liquid-boot__ring liquid-boot__ring--two"></span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.2 14.34 9.66 22.8 12l-8.46 2.34L12 22.8 9.66 14.34 1.2 12l8.46-2.34z"/></svg>
+      </div>
+      <div class="liquid-boot__word"><span>oceans</span><em>—</em><span>muse</span></div>
+      <p class="liquid-boot__tag">Orbital Atelier · Liquid Glass</p>
+    </div>
+    <div class="liquid-boot__progress"><i></i></div>
+    <button class="liquid-boot__skip" type="button" tabindex="-1">跳过</button>
+    <p class="liquid-boot__hint">点击任意处进入</p>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="nav-shell glass">
+      <a class="brand" href="#top" aria-label="oceans-muse 首页">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 1.2 14.34 9.66 22.8 12l-8.46 2.34L12 22.8 9.66 14.34 1.2 12l8.46-2.34z"/></svg>
+        </span>
+        <span class="brand__word">oceans-muse<small>Orbital Atelier</small></span>
+      </a>
+
+      <nav class="nav-links" aria-label="主导航">
+        <a class="nav-link" href="#journal" data-section="journal">飞行日志</a>
+        <a class="nav-link" href="#projects" data-section="projects">项目</a>
+        <a class="nav-link" href="#lab" data-section="lab">实验档案</a>
+        <a class="nav-link" href="#about" data-section="about">关于</a>
+        <a class="nav-link" href="#signal" data-section="signal">订阅</a>
+        <button class="nav-link nav-link--mission" type="button" data-open-mission aria-haspopup="dialog" aria-controls="missionDialog">
+          预定发射
+          <svg class="nav-chevron" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5"/></svg>
+        </button>
+      </nav>
+
+      <div class="nav-tools">
+        <button class="search-trigger" type="button" id="searchTrigger" aria-label="搜索文章，快捷键 Command K">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.6"/><path d="m13 13 4 4"/></svg>
+          <span>搜索</span>
+          <kbd>⌘K</kbd>
+        </button>
+        <button class="icon-button theme-toggle" type="button" id="themeToggle" aria-label="切换明暗主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.2A8.2 8.2 0 0 1 9.8 3.8 8.4 8.4 0 1 0 20.2 14.2Z"/></svg>
+        </button>
+        <a class="icon-button" href="/feed.xml" aria-label="RSS 订阅" title="RSS 订阅">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="5.2" cy="14.8" r="1.6" fill="currentColor" stroke="none"/><path d="M3.4 9.2a7.4 7.4 0 0 1 7.4 7.4M3.4 4.4A12.2 12.2 0 0 1 15.6 16.6"/></svg>
+        </a>
+        <a class="nav-admin" href="/admin" aria-label="进入工作台">
+          <span class="status-dot"></span>
+          <span>工作台</span>
+        </a>
+        <button class="mobile-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="打开菜单">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-menu__links" aria-label="移动导航">
+      <a href="#journal">飞行日志<span>01 / Journal</span></a>
+      <a href="#projects">项目<span>02 / Projects</span></a>
+      <a href="#lab">实验档案<span>03 / Lab</span></a>
+      <a href="#about">关于<span>04 / About</span></a>
+      <a href="#signal">订阅<span>05 / Signal</span></a>
+      <button type="button" data-open-mission>预定发射<span>06 / Mission</span></button>
+      <a href="/admin">工作台<span>Admin</span></a>
+    </nav>
+    <div class="mobile-menu__foot">
+      <span>Shanghai · 31.2304° N</span>
+      <button type="button" class="text-link" data-open-contact>发送信号 <span aria-hidden="true">↗</span></button>
+    </div>
+  </div>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="heroTitle">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="hero__eyebrow"><span class="status-dot"></span> <b>oceans-muse</b> · 火箭设计师 · 上海</p>
+          <h1 class="hero__title" id="heroTitle">
+            <span class="line"><span>把复杂，</span></span>
+            <span class="line"><span>设计成</span></span>
+            <span class="line"><span class="accent">直觉。</span></span>
+          </h1>
+          <p class="hero__lead" id="heroLead">
+            在结构、推进与飞控之间工作。把 1,200 条遥测、几十版图纸和一整夜的争论，
+            压成一次可靠的点火——以及一个你愿意每天打开的界面。
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#journal">
+              阅读飞行日志
+              <svg class="btn__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <button class="btn" type="button" data-open-contact>
+              发送信号
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <p class="hero__note">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 9.4 6.6 14.5 8 9.4 9.4 8 14.5 6.6 9.4 1.5 8l5.1-1.4z"/></svg>
+            结构 · 推进 · 飞控 &nbsp;/&nbsp; 2020 — Now
+          </p>
+        </div>
+
+        <aside class="orbit-card glass" id="missionCard" data-tilt aria-label="下一次任务倒计时">
+          <div class="orbit-card__head">
+            <p class="eyebrow">Next Mission · 预定发射</p>
+            <span class="mission-pill" id="missionStatus"><span class="status-dot"></span><span id="missionStatusText">待发射</span></span>
+          </div>
+
+          <div class="orbit-scene" aria-hidden="true">
+            <span class="orbit-scene__grid"></span>
+            <span class="orbit-scene__ring"></span>
+            <span class="orbit-scene__ring orbit-scene__ring--b"></span>
+            <span class="orbit-scene__planet"></span>
+            <span class="orbit-scene__label">TAO / Mission 07</span>
+            <span class="orbit-scene__label orbit-scene__label--right" id="missionTitleMini">请不要告诉我</span>
+          </div>
+
+          <div class="mission-readout">
+            <p class="readout-label">T-Minus · 距发射窗口</p>
+            <div class="countdown" aria-live="off">
+              <span class="countdown__group"><strong id="cdDays">000</strong><span>Days</span></span>
+              <span class="countdown__sep" aria-hidden="true">:</span>
+              <span class="countdown__group"><strong id="cdHours">00</strong><span>Hrs</span></span>
+              <span class="countdown__sep" aria-hidden="true">:</span>
+              <span class="countdown__group"><strong id="cdMinutes">00</strong><span>Min</span></span>
+              <span class="countdown__sep" aria-hidden="true">:</span>
+              <span class="countdown__group"><strong id="cdSeconds">00</strong><span>Sec</span></span>
+            </div>
+            <div class="mission-progress" aria-hidden="true"><i id="missionBar"></i></div>
+            <div class="mission-meta">
+              <span id="missionTarget">2028-06-01 12:00 UTC</span>
+              <span><b id="missionPct">0.0%</b> progress</span>
+            </div>
+          </div>
+
+          <div class="orbit-card__foot">
+            <span>发射场 <b id="missionSite">文昌 · 中国</b></span>
+            <a class="text-link" href="#journal">任务手记
+              <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h9M7.5 3.5 11 7l-3.5 3.5"/></svg>
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <div class="wrap">
+        <div class="proof glass">
+          <div class="proof__item"><strong id="statPosts">08</strong><span>篇公开手记</span></div>
+          <div class="proof__item"><strong id="statViews">15.6k</strong><span>次阅读</span></div>
+          <div class="proof__item"><strong id="statYears">6</strong><span>年设计</span></div>
+          <div class="proof__item"><strong id="statLikes">312</strong><span>次共鸣</span></div>
+          <div class="proof__live"><span class="status-dot"></span> All systems nominal</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="journal" aria-labelledby="journalTitle">
+      <div class="wrap">
+        <header class="section-head journal-head" data-reveal>
+          <div>
+            <p class="eyebrow">Flight Journal · 飞行日志</p>
+            <h2 class="section-title" id="journalTitle">从一次点火，<br><em>到一行代码。</em></h2>
+          </div>
+          <p class="section-lead">
+            写设计，也写那些没有写进评审报告的判断。<strong>结构、材料、时序、界面</strong>——
+            所有让复杂变简单的东西，都值得被记录。
+          </p>
+        </header>
+
+        <div class="journal-bar glass" data-reveal>
+          <div class="journal-filters" id="journalFilters" role="group" aria-label="按分类筛选">
+            <button class="chip is-active" type="button" data-category="all" aria-pressed="true">全部 <span class="chip__count">08</span></button>
+          </div>
+          <div class="journal-tools">
+            <button class="chip" type="button" id="inlineSearch">搜索</button>
+            <label class="sort-control">
+              <span>Sort</span>
+              <select id="sortSelect" aria-label="文章排序">
+                <option value="new">最新</option>
+                <option value="old">最早</option>
+                <option value="popular">最受欢迎</option>
+              </select>
+            </label>
+            <div class="layout-switch" id="layoutSwitch" role="group" aria-label="布局方式">
+              <button type="button" class="is-active" data-layout="grid" aria-label="卡片布局" aria-pressed="true">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="1.5" width="5.4" height="5.4" rx="1.2"/><rect x="9.1" y="1.5" width="5.4" height="5.4" rx="1.2"/><rect x="1.5" y="9.1" width="5.4" height="5.4" rx="1.2"/><rect x="9.1" y="9.1" width="5.4" height="5.4" rx="1.2"/></svg>
+              </button>
+              <button type="button" data-layout="list" aria-label="列表布局" aria-pressed="false">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="2.6" width="13" height="3.4" rx="1.2"/><rect x="1.5" y="7.4" width="13" height="3.4" rx="1.2"/><rect x="1.5" y="12.2" width="13" height="1.6" rx=".8"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="journal-meta">
+          <span><b id="resultCount">0</b> 篇记录</span>
+          <span id="resultHint">按发布时间排序</span>
+        </div>
+
+        <div class="post-grid" id="postGrid" data-layout="grid" aria-live="polite" aria-busy="true"></div>
+        <div class="journal-more" id="journalMoreWrap" hidden>
+          <button class="btn" type="button" id="loadMore">加载更多手记</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projectsTitle">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow">Projects &amp; Achievements · 项目与成就</p>
+            <h2 class="section-title" id="projectsTitle">让每一次试飞，<br><em>留下可检索的证据。</em></h2>
+          </div>
+          <p class="section-lead">
+            测试记录与发动机档案，不是履历表。它们是<strong>下一次判断的边界条件</strong>——
+            成功、部分成功与失败，都应该被准确记录。
+          </p>
+        </header>
+
+        <div class="project-showcase" data-reveal>
+          <article class="project-panel glass" aria-labelledby="launchPanelTitle">
+            <header class="project-panel__head">
+              <span class="project-panel__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2.8c3.1 2.4 4.8 5.8 4.8 9.8 0 2-.6 3.9-1.8 5.4H9a8.9 8.9 0 0 1-1.8-5.4c0-4 1.7-7.4 4.8-9.8Z"/><path d="M9.4 18 8 21M14.6 18 16 21M12 7.4v3.2"/></svg>
+              </span>
+              <div class="project-panel__title">
+                <h3 id="launchPanelTitle">测试记录</h3>
+                <p>Launch Records</p>
+              </div>
+              <span class="project-panel__count" id="launchCount">0 次</span>
+            </header>
+
+            <div class="project-filters" id="launchFilters" role="group" aria-label="按测试结果筛选">
+              <button class="chip is-active" type="button" data-launch-status="all" aria-pressed="true">全部 <span class="chip__count">0</span></button>
+              <button class="chip" type="button" data-launch-status="success" aria-pressed="false">成功 <span class="chip__count">0</span></button>
+              <button class="chip" type="button" data-launch-status="partial" aria-pressed="false">部分成功 <span class="chip__count">0</span></button>
+              <button class="chip" type="button" data-launch-status="fail" aria-pressed="false">失败 <span class="chip__count">0</span></button>
+            </div>
+
+            <div class="project-list" id="launchList" aria-live="polite">
+              <div class="project-loading">正在读取飞行记录…</div>
+            </div>
+
+            <footer class="project-panel__foot">
+              <span>数据来自飞行日志 · 持续更新</span>
+              <span class="project-panel__legend"><i class="status-dot"></i> telemetry</span>
+            </footer>
+          </article>
+
+          <article class="project-panel glass" aria-labelledby="enginePanelTitle">
+            <header class="project-panel__head">
+              <span class="project-panel__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3v4.5M9 7.5h6l2 6H7l2-6Z"/><path d="M10 13.5v3h4v-3M11 16.5v3.5M13 16.5v3.5"/></svg>
+              </span>
+              <div class="project-panel__title">
+                <h3 id="enginePanelTitle">发动机</h3>
+                <p>Engines</p>
+              </div>
+              <span class="project-panel__count" id="engineCount">0 台</span>
+            </header>
+
+            <div class="project-filters" id="engineFilters" role="group" aria-label="按发动机状态筛选">
+              <button class="chip is-active" type="button" data-engine-status="all" aria-pressed="true">全部 <span class="chip__count">0</span></button>
+              <button class="chip" type="button" data-engine-status="active" aria-pressed="false">在役 <span class="chip__count">0</span></button>
+              <button class="chip" type="button" data-engine-status="dev" aria-pressed="false">研发中 <span class="chip__count">0</span></button>
+              <button class="chip" type="button" data-engine-status="retired" aria-pressed="false">退役 <span class="chip__count">0</span></button>
+            </div>
+
+            <div class="project-list" id="engineList" aria-live="polite">
+              <div class="project-loading">正在读取发动机档案…</div>
+            </div>
+
+            <footer class="project-panel__foot">
+              <span>型号参数 · 试车与飞行验证</span>
+              <span class="project-panel__legend"><i class="status-dot"></i> test stand</span>
+            </footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab" aria-labelledby="labTitle">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow">Lab & Archives · 实验档案</p>
+            <h2 class="section-title" id="labTitle">三件正在<br><em>变轻的事。</em></h2>
+          </div>
+          <p class="section-lead">
+            不是路线图，也不是宣传页。只是三个仍在迭代的工程对象，以及它们教会我的取舍。
+          </p>
+        </header>
+
+        <div class="lab-grid">
+          <a class="lab-card lab-card--structure glass" href="#journal" data-lab-filter="设计" data-reveal>
+            <div class="lab-card__head">
+              <span class="lab-card__index">S-01 / STRUCTURE</span>
+              <span class="lab-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2.8c3.1 2.4 4.8 5.8 4.8 9.8 0 2-.6 3.9-1.8 5.4H9a8.9 8.9 0 0 1-1.8-5.4c0-4 1.7-7.4 4.8-9.8Z"/><path d="M9.4 18 8 21M14.6 18 16 21M12 7.4v3.2"/></svg>
+              </span>
+            </div>
+            <div class="lab-card__art" aria-hidden="true"></div>
+            <h3>可复用舱段</h3>
+            <p>把 37 克留给一副完好的手套。结构减重的终点，不是数字最小，而是维修的人还愿意再来一次。</p>
+            <div class="lab-card__foot">
+              <span class="lab-card__progress"><i style="--v:78%"></i></span>
+              <span class="lab-card__pct">78%</span>
+            </div>
+          </a>
+
+          <a class="lab-card lab-card--propulsion glass" href="#journal" data-lab-filter="测试" data-reveal style="--reveal-delay:90ms">
+            <div class="lab-card__head">
+              <span class="lab-card__index">R-02 / PROPULSION</span>
+              <span class="lab-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3v4.5M9 7.5h6l2 6H7l2-6Z"/><path d="M10 13.5v3h4v-3M11 16.5v3.5M13 16.5v3.5"/></svg>
+              </span>
+            </div>
+            <div class="lab-card__art" aria-hidden="true"></div>
+            <h3>甲烷发动机</h3>
+            <p>比冲不是唯一的答案。真正难的是让一台发动机在第 20 次点火时，仍然像第一次那样可预测。</p>
+            <div class="lab-card__foot">
+              <span class="lab-card__progress"><i style="--v:62%"></i></span>
+              <span class="lab-card__pct">62%</span>
+            </div>
+          </a>
+
+          <a class="lab-card lab-card--avionics glass" href="#journal" data-lab-filter="飞行" data-reveal style="--reveal-delay:180ms">
+            <div class="lab-card__head">
+              <span class="lab-card__index">G-03 / AVIONICS</span>
+              <span class="lab-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M8 20h8M12 16.5V20M7 9h3M7 12h6"/></svg>
+              </span>
+            </div>
+            <div class="lab-card__art" aria-hidden="true"></div>
+            <h3>液体玻璃座舱</h3>
+            <p>把 1,200 条告警压缩成一个注意力焦点。界面不替人做决定，只让决定的重量被恰当感受到。</p>
+            <div class="lab-card__foot">
+              <span class="lab-card__progress"><i style="--v:91%"></i></span>
+              <span class="lab-card__pct">91%</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="aboutTitle">
+      <div class="wrap">
+        <div class="about-grid">
+          <div class="about-visual" data-reveal>
+            <div class="portrait">
+              <span class="portrait__ring" aria-hidden="true"></span>
+              <span class="portrait__ring portrait__ring--b" aria-hidden="true"></span>
+              <span class="portrait__orb" aria-hidden="true"></span>
+              <span class="portrait__monogram" aria-hidden="true">OM</span>
+              <div class="portrait__caption">
+                <span>Shanghai · 31.2304° N</span>
+                <b>OM / 2026</b>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-copy" data-reveal style="--reveal-delay:100ms">
+            <p class="eyebrow">About · 关于</p>
+            <h2 class="section-title" id="aboutTitle">在重力与界面之间，<br><em>寻找更少的那一克。</em></h2>
+            <p>
+              我是 oceans-muse，一名火箭设计师。白天处理结构接口、推进时序和那些永远改不完的评审意见；
+              晚上写代码、做界面，试图把工程里的复杂，翻译成一种可以被感知的秩序。
+            </p>
+            <p>
+              我相信<strong>克制是一种工程能力</strong>。少一个零件、少一条告警、少一次点击，
+              往往比多一个功能更难，也更有价值。
+            </p>
+
+            <dl class="about-facts">
+              <div class="about-fact"><dt>坐标</dt><dd id="aboutLocation">上海 · 中国</dd></div>
+              <div class="about-fact"><dt>现在</dt><dd id="aboutNow">热分离时序 / 液体玻璃座舱</dd></div>
+              <div class="about-fact"><dt>方向</dt><dd>结构 · 推进 · 飞控</dd></div>
+              <div class="about-fact"><dt>工具</dt><dd id="aboutTools">CATIA · Python · MATLAB</dd></div>
+            </dl>
+
+            <blockquote class="about-quote">
+              任何足够先进的科技，都与魔法无异。但我们仍然要知道，魔法背后的每一颗螺栓在哪里。
+              <cite>— Arthur C. Clarke, 1973</cite>
+            </blockquote>
+
+            <div class="about-actions">
+              <button class="btn btn--primary" type="button" data-open-contact>发送信号</button>
+              <a class="btn" href="https://github.com/oceans-muse/Grocery-store" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="signal" aria-labelledby="signalTitle">
+      <div class="wrap">
+        <div class="signal-panel glass" data-reveal>
+          <span class="signal-panel__glow" aria-hidden="true"></span>
+          <div>
+            <p class="eyebrow">Newsletter · 任务简报</p>
+            <h2 id="signalTitle">每月一封，<br>来自 400 公里的信。</h2>
+            <p id="subscribeNote">不追热点，只记录那些值得被反复计算的细节。随时可以退订。</p>
+          </div>
+          <form class="signal-form" id="subscribeForm" novalidate>
+            <div class="signal-form__row">
+              <label class="sr-only" for="subscribeEmail">邮箱地址</label>
+              <input id="subscribeEmail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
+              <button class="btn btn--primary" type="submit" id="subscribeBtn">订阅</button>
+            </div>
+            <p class="form-message" id="subscribeMessage" role="status"></p>
+            <p class="signal-form__note">每月不超过 2 封 · 无广告 · 可随时通过 <a href="/feed.xml">RSS</a> 阅读</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer home-footer">
+    <div class="wrap">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="brand" href="#top" aria-label="回到顶部">
+            <span class="brand__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 1.2 14.34 9.66 22.8 12l-8.46 2.34L12 22.8 9.66 14.34 1.2 12l8.46-2.34z"/></svg>
+            </span>
+            <span class="brand__word">oceans-muse<small>Orbital Atelier</small></span>
+          </a>
+          <p>把复杂的系统，设计成透明的直觉。这里记录火箭、界面，以及两者之间那些没有被写进报告的判断。</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#journal">飞行日志</a></li>
+              <li><a href="#lab">实验档案</a></li>
+              <li><a href="#about">关于</a></li>
+              <li><a href="#signal">订阅</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="/feed.xml">RSS 订阅</a></li>
+              <li><a href="https://github.com/oceans-muse/Grocery-store" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              <li><button type="button" data-open-contact>发送信号</button></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>System</h4>
+            <ul>
+              <li><a href="/admin">工作台</a></li>
+              <li><a href="/sitemap.xml">站点地图</a></li>
+              <li><a href="/feed.xml">Feed</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> oceans-muse · 保留所有权利</span>
+        <span class="footer-bottom__links">
+          <span>Designed in Shanghai</span>
+          <a href="/feed.xml">RSS</a>
+          <a href="/sitemap.xml">Sitemap</a>
+          <a href="/admin">Admin</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search-dialog" id="searchDialog" aria-labelledby="searchTitle">
+    <div class="dialog-card search-dialog">
+      <h2 class="sr-only" id="searchTitle">搜索文章</h2>
+      <div class="search-dialog__field">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.6"/><path d="m13 13 4 4"/></svg>
+        <input id="searchInput" type="search" placeholder="搜索手记、标签、关键词…" autocomplete="off" spellcheck="false" aria-label="搜索关键词" aria-controls="searchResults">
+        <kbd>ESC</kbd>
+      </div>
+      <div class="search-results" id="searchResults" role="listbox" aria-label="搜索结果"></div>
+      <div class="search-foot">
+        <span><kbd>↑</kbd> <kbd>↓</kbd> 选择 &nbsp; <kbd>↵</kbd> 打开</span>
+        <span>oceans-muse / search</span>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="contact-dialog" id="contactDialog" aria-labelledby="contactTitle">
+    <div class="dialog-card">
+      <div class="dialog-head">
+        <div>
+          <h2 class="dialog-title" id="contactTitle">发送一束信号</h2>
+          <p class="dialog-sub">合作、技术讨论，或者只是想聊聊火箭。留下邮箱，我会尽快回复。</p>
+        </div>
+        <button class="icon-button dialog-close" type="button" data-close-dialog aria-label="关闭">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3 3 10 10M13 3 3 13"/></svg>
+        </button>
+      </div>
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="contactName">称呼</label>
+            <input class="input" id="contactName" name="name" maxlength="60" placeholder="怎么称呼你" required>
+          </div>
+          <div class="field">
+            <label for="contactEmail">邮箱</label>
+            <input class="input" id="contactEmail" name="email" type="email" maxlength="160" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="field" style="margin-top:14px">
+          <label for="contactSubject">主题 <span style="opacity:.45">(可选)</span></label>
+          <input class="input" id="contactSubject" name="subject" maxlength="120" placeholder="想聊些什么">
+        </div>
+        <div class="field" style="margin-top:14px">
+          <label for="contactMessage">内容</label>
+          <textarea class="textarea" id="contactMessage" name="message" maxlength="3000" placeholder="把问题、背景或想法写得具体一点…" required></textarea>
+        </div>
+        <p class="form-message" id="contactMessageStatus" role="status" style="margin-top:10px"></p>
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px">
+          <button class="btn btn--ghost" type="button" data-close-dialog>取消</button>
+          <button class="btn btn--primary" type="submit" id="contactSubmit">发送信号</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog class="mission-dialog" id="missionDialog" aria-labelledby="missionDialogTitle">
+    <div class="dialog-card mission-dialog__card">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">Mission Brief · 预定发射</p>
+          <h2 class="dialog-title" id="missionDialogTitle">卫星参数填写</h2>
+          <p class="dialog-sub">参数会被写入任务队列，用于评估下一批次的发射窗口与载荷适配。</p>
+        </div>
+        <button class="icon-button dialog-close" type="button" data-close-dialog aria-label="关闭">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3 3 10 10M13 3 3 13"/></svg>
+        </button>
+      </div>
+
+      <form class="mission-form" id="missionRequestForm" novalidate>
+        <div class="mission-form__grid">
+          <div class="field">
+            <label for="missionBatch">批次</label>
+            <input class="input" id="missionBatch" name="batch" maxlength="60" placeholder="如 B-2026-01" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="missionType">卫星类型</label>
+            <select class="select" id="missionType" name="type" required>
+              <option value="">请选择</option>
+              <option value="comm">通信</option>
+              <option value="remote">遥感</option>
+              <option value="nav">导航</option>
+              <option value="science">科学实验</option>
+              <option value="tech">技术验证</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="missionMass">卫星质量 (kg)</label>
+            <input class="input" id="missionMass" name="mass" type="number" min="0.1" max="100000" step="0.1" placeholder="0.0" inputmode="decimal" required>
+          </div>
+          <div class="field">
+            <label for="missionAltitude">目标高度 (km)</label>
+            <input class="input" id="missionAltitude" name="altitude" type="number" min="1" max="100000" step="1" placeholder="0" inputmode="decimal" required>
+          </div>
+          <div class="field mission-form__wide">
+            <label for="missionLifetime">滞空时长 (年)</label>
+            <input class="input" id="missionLifetime" name="lifetime" type="number" min="0.1" max="50" step="0.1" placeholder="0.0" inputmode="decimal" required>
+          </div>
+        </div>
+        <p class="form-message" id="missionFormMessage" role="status"></p>
+        <button class="btn btn--primary mission-form__submit" type="submit" id="missionSubmit">提交参数</button>
+        <p class="mission-form__note">提交后会生成一个任务参考号。不会公开你的卫星参数。</p>
+      </form>
+
+      <div class="mission-success" id="missionSuccess" tabindex="-1" role="status" aria-live="polite" hidden>
+        <span class="mission-success__orb" aria-hidden="true"></span>
+        <p class="eyebrow">Signal Received</p>
+        <h3>参数已进入任务队列。</h3>
+        <p>这条申请已出现在工作台的任务队列中，可根据轨道窗口与载荷适配情况继续评估。</p>
+        <code id="missionReference">MSN-0000</code>
+        <button class="btn btn--primary" type="button" id="missionSuccessClose">完成</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="false"></div>
+
+  <script type="module" src="/assets/js/home.js?v=20261032"></script>
+</body>
+</html>
